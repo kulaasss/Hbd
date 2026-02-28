@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday My Love ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: white;
+            overflow-x: hidden;
+
+            /* Dancing Cat GIF as FULL background */
+            background: url('dancing-cat.gif') center center / cover no-repeat fixed;
+        }
+
+        /* Dark overlay so text is readable */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        h1 {
+            margin-top: 120px;
+            font-size: 45px;
+            position: relative;
+            z-index: 2;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            background-color: white;
+            color: #ff4da6;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        button:hover {
+            background-color: #ff4da6;
+            color: white;
+        }
+
+        #message {
+            display: none;
+            margin-top: 20px;
+            font-size: 22px;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Carousel */
+        .carousel {
+            display: none;
+            margin: 30px auto;
+            width: 80%;
+            max-width: 500px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        /* Floating Hearts */
+        .heart {
+            position: fixed;
+            bottom: -20px;
+            font-size: 20px;
+            animation: floatUp 6s linear forwards;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <h1>Happy Birthday, My Love 🎉</h1>
+
+    <button onclick="startSurprise()">I LOVE YOU ❤️</button>
+
+<p id="message">
+    Happiest birthday to the person I cherish the most. Every moment we spend together feels like a treasure that make time itself stops just so I can appreciate you more.
+
+    Thank you for being part of my life. Andito lang ako palagi para suportahan ka sa mga pangarap at desisyon mo. Kahit ano mang mangyari, I will always be here for you.
+
+    Today is your special day, and I want you to enjoy it to the fullest. You deserve all the happiness in the world. I will do my best to make you smile and feel loved.
+
+    I LOVE YOU SO MUCH MY LOVE ❤️
+</p>
+
+    <div class="carousel" id="carousel">
+        <img src="pic1.jpg" class="active">
+        <img src="pic2.jpg">
+        <img src="pic3.jpg">
+        <img src="pic4.jpg">
+        <img src="pic5.jpg">
+        <img src="pic6.jpg">
+    </div>
+
+    <audio id="bgMusic" src="music.mp3" loop></audio>
+
+    <script>
+        const images = document.querySelectorAll(".carousel img");
+        let current = 0;
+        let intervalStarted = false;
+
+        function startSurprise() {
+            document.getElementById("message").style.display = "block";
+            document.getElementById("carousel").style.display = "block";
+            document.getElementById("bgMusic").play();
+
+            if (!intervalStarted) {
+                setInterval(nextSlide, 3000);
+                setInterval(createHeart, 400);
+                intervalStarted = true;
+            }
+        }
+
+        function nextSlide() {
+            images[current].classList.remove("active");
+            current = (current + 1) % images.length;
+            images[current].classList.add("active");
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "💖";
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+    </script>
+
+</body>
+</html>
